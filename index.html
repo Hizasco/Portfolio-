@@ -37,7 +37,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: 
+      background-image:
         linear-gradient(rgba(0, 255, 196, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 255, 196, 0.03) 1px, transparent 1px);
       background-size: 40px 40px;
@@ -758,7 +758,7 @@
     <!-- PROJECTS with image galleries -->
     <section>
       <h2 class="section-title">Projects</h2>
-      
+
       <!-- ZAICHAT -->
       <div class="project-card" id="project-zaichat">
         <h3>ZAICHAT</h3>
@@ -1132,13 +1132,18 @@
         'Media/zaichat-5.jpg'
       ],
       'hizasco-cloud': [
-        'Media/cloud-1.jpg',
-        'Media/cloud-2.jpg',
-        'Media/cloud-3.jpg'
+        'https://lh3.googleusercontent.com/d/1KvwY1o4j71AMtvtQxb-dPah6JkEzhk9m=w800',
+        'https://lh3.googleusercontent.com/d/1gMCf0iHLlKa4_1KjPTGr1u0cbPWaeQSW=w800',
+        'https://lh3.googleusercontent.com/d/1exrtC8lHE9xy8aCpjt3cxJvCe99P8MPp=w800',
+				'https://lh3.googleusercontent.com/d/12idVzadWiBFow7hxx6Zqvn8t8Y5xgLTa=w800',
+				'https://lh3.googleusercontent.com/d/1T_uvOQdSiLat5OKWjdtQmQw1DVC5J4Ei=w800'
       ],
       'site-tester': [
-        'Media/tester-1.jpg',
-        'Media/tester-2.jpg'
+        'https://lh3.googleusercontent.com/d/15MBlqw6XqfsvegnlgJHe8wH4jpz8P2Yw=w800',
+        'https://lh3.googleusercontent.com/d/1MZD6Fh-kuoKYN7CGFagkdhp97ylK-Yz_=w800',
+				'https://lh3.googleusercontent.com/d/1N60YWw9AMza3rntHRAuFOkwrQWFr2Xms=w800',
+				'https://lh3.googleusercontent.com/d/1nDg_lKcB_m7ndmEhP5ZSAtlHJVASDdjY=w800',
+				'https://lh3.googleusercontent.com/d/1bOz4r7Amsj7wu7-vKpowk_PJOpf_I4dF=w800'
       ],
       'zaiki': [
         'Media/zaiki-1.jpg',
@@ -1183,7 +1188,7 @@
         };
 
         renderGallery(project);
-        
+
         if (images.length > VISIBLE_COUNT) {
           if (seeMoreBtn) seeMoreBtn.style.display = 'inline-flex';
         }
@@ -1196,7 +1201,7 @@
       if (!track || !state) return;
 
       const imagesToShow = state.expanded ? state.images : state.images.slice(0, VISIBLE_COUNT);
-      
+
       track.innerHTML = imagesToShow.map((img, index) => `
         <div class="gallery-item" onclick="openLightbox('${project}', ${index})">
           <img src="${img}" alt="Screenshot" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22120%22><rect fill=%22%23111b24%22 width=%22200%22 height=%22120%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%235a7a8c%22 text-anchor=%22middle%22 dy=%22.3em%22>Image</text></svg>'">
@@ -1213,8 +1218,8 @@
       state.expanded = !state.expanded;
       const btn = document.getElementById(`see-more-${project}`);
       if (btn) {
-        btn.innerHTML = state.expanded ? 
-          '<i class="fas fa-minus"></i> Show Less' : 
+        btn.innerHTML = state.expanded ?
+          '<i class="fas fa-minus"></i> Show Less' :
           '<i class="fas fa-plus"></i> See More Images';
       }
       renderGallery(project);
@@ -1225,16 +1230,16 @@
       if (!state) return;
       const images = state.expanded ? state.images : state.images.slice(0, VISIBLE_COUNT);
       const maxIndex = Math.max(0, images.length - VISIBLE_COUNT);
-      
+
       state.currentIndex = Math.max(0, Math.min(state.currentIndex + direction, maxIndex));
-      
+
       const track = document.getElementById(`gallery-${project}`);
       if (track) {
         const itemWidth = track.querySelector('.gallery-item')?.offsetWidth || 300;
         const gap = 12;
         track.style.transform = `translateX(-${state.currentIndex * (itemWidth + gap)}px)`;
       }
-      
+
       updateGalleryNav(project);
     }
 
@@ -1243,13 +1248,13 @@
       if (!state) return;
       const images = state.expanded ? state.images : state.images.slice(0, VISIBLE_COUNT);
       const maxIndex = Math.max(0, images.length - VISIBLE_COUNT);
-      
+
       const track = document.getElementById(`gallery-${project}`);
       if (!track) return;
-      
+
       const prevBtn = track.parentElement.querySelector('.gallery-nav.prev');
       const nextBtn = track.parentElement.querySelector('.gallery-nav.next');
-      
+
       if (prevBtn) prevBtn.disabled = state.currentIndex === 0;
       if (nextBtn) nextBtn.disabled = state.currentIndex >= maxIndex;
     }
